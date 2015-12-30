@@ -3,7 +3,9 @@
     <img src="http://placehold.it/50x50" />
   </div>
   <div class="chatboxmessagecontent">
-    <p><%= message.body %></p>
+    <p class="message"><%= message.body %>
+      <!-- <%= link_to "del",[message.conversation,message],:controller => "conversations",:action => "destroy" , remote:true,class:'delete_message' %> -->
+    </p>
     <time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime("%d %b  %Y at %I:%M%p") %>">
       <%= message_interlocutor(message).name %> • <%= message.created_at.strftime("%H:%M %p") %>
     </time>

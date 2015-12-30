@@ -20,6 +20,15 @@ class ConversationsController < ApplicationController
     @message = Message.new
   end
 
+  #  def destroy
+  #    @conversation=Conversation.find(params[:id])
+  #    @message=@conversation.messages.find(params[:id])
+  #    @message.destroy
+  #    respond_to do |format|
+  #      format.js {render layout:false}
+  #    end
+  #  end
+
   private
   def conversation_params
     params.permit(:sender_id, :recipient_id)

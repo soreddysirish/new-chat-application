@@ -1,4 +1,5 @@
 var ready = function () {
+  
 
     /**
      * When the send message link on our home page is clicked

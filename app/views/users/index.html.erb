@@ -16,12 +16,11 @@
           <tbody>
           <% @users.each_with_index do |user, index| %>
               <tr>
-
                   <% if user_signed_in? %>
                 <td><%=link_to  user.name,"#",class: " btn-xs start-conversation",
                             "data-sid" => current_user.id, "data-rip" => user.id %></td>
-                                  <% end %>
-                                    <td><% index +=1 %></td>
+                  <% end %>
+                <td><% index +=1 %></td>
               </tr>
           <% end %>
 
