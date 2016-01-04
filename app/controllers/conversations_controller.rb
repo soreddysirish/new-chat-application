@@ -30,6 +30,7 @@ class ConversationsController < ApplicationController
   #  end
 
   private
+  
   def conversation_params
     params.permit(:sender_id, :recipient_id)
   end
@@ -37,4 +38,5 @@ class ConversationsController < ApplicationController
   def interlocutor(conversation)
     current_user == conversation.recipient ? conversation.sender : conversation.recipient
   end
+
 end

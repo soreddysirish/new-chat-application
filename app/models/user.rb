@@ -3,12 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-
-
      has_many :conversations, :foreign_key => :sender_id
-
      after_create :create_default_conversation
-
+     scope :online_users_list, -> { where(status:true)}
 
      private
 

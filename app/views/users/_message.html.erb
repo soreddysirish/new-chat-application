@@ -1,0 +1,7 @@
+<ul class="groupmessages_list">
+<% @groupmessages.each do |msg| %>
+  <li style="list-style-type:none">
+    <label class='label label-default'><%= msg.user.name %></label>:
+      <%= msg.text %></li>
+      <% end %>
+ </ul>

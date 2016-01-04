@@ -6,5 +6,5 @@ test:
   secret_token: "secret"
 production:
   server: "http://example.com/faye"
-  secret_token: "145e9730810220f7d48df29dedc1b79aba39d1202977ae55cac8d97b0b44523d"
-  signature_expiration: 86400 # one hour
+  secret_token: "2b236c2fba47f8b2e7a6df29c0246da616d8c92d304a3756b744315f03ea8350"
+  signature_expiration: 3600 # one hour

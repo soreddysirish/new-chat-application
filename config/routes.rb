@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
+   devise_for :users,controllers: {sessions: 'sessions'}
 
- resources :users
    authenticated :user do
-     root 'users#index'
+     resources :users
+    root to: "users#index", as: :authenticated_root
   end
+  unauthenticated   do
+      root to:'welcome#index', as: :unauthenticated_root
+      resources :users
+  end
+
    resources :conversations do
      resources :messages
    end
+   resources :groupmessages
 end

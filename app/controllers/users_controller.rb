@@ -1,13 +1,23 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:new,:create]
  #before_action :authenticate_user!
 
 
   def index
+    @groupmessage = Groupmessage.new
+    @groupmessages = Groupmessage.all
     #binding.pry
-      @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
+    #  @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
+    if user_signed_in?
+      current_user.update_attributes(status:true)
+      @users=User.online_users_list
       @conversations = Conversation.involving(current_user).order("created_at DESC")
+    end
   end
+
+
+
   # GET /users
   # GET /users.json
   # def index
@@ -78,4 +88,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name,:email,:password,:password_confirmation)
     end
+
 end
