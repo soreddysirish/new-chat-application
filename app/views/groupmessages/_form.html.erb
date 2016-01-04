@@ -1,3 +1,4 @@
+<%= subscribe_to "/groupmessages/new"  %>
 <%= simple_form_for @groupmessage, method: :post, remote: true, input_html: {multipart: true} do |f| %>
 <%= f.input :text, :required => true, label: false%>
 <% end %>

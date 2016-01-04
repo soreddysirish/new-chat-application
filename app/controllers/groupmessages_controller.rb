@@ -4,7 +4,7 @@ class GroupmessagesController < ApplicationController
   # GET /groupmessages
   # GET /groupmessages.json
   def index
-    @groupmessages = Groupmessage.all
+    #@groupmessages = Groupmessage.all
     @groupmessage  = Groupmessage.new
   end
 
@@ -25,12 +25,12 @@ class GroupmessagesController < ApplicationController
   # POST /groupmessages
   # POST /groupmessages.json
   def create
-    @groupmessage = Groupmessage.new
+    #@groupmessage = Groupmessage.new
     @groupmessage = Groupmessage.create(groupmessage_params)
-    @groupmessages=Groupmessage.all
     respond_to do |format|
       format.js
     end
+
   end
 
 

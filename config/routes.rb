@@ -4,6 +4,7 @@ Rails.application.routes.draw do
    authenticated :user do
      resources :users
     root to: "users#index", as: :authenticated_root
+    resources :groupmessages
   end
   unauthenticated   do
       root to:'welcome#index', as: :unauthenticated_root
@@ -13,5 +14,5 @@ Rails.application.routes.draw do
    resources :conversations do
      resources :messages
    end
-   resources :groupmessages
+
 end

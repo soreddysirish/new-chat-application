@@ -3,10 +3,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:new,:create]
  #before_action :authenticate_user!
 
-
   def index
     @groupmessage = Groupmessage.new
-    @groupmessages = Groupmessage.all
+  #  @groupmessages = Groupmessage.all
     #binding.pry
     #  @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
     if user_signed_in?
@@ -18,14 +17,7 @@ class UsersController < ApplicationController
 
 
 
-  # GET /users
-  # GET /users.json
-  # def index
-  #   @users = User.all
-  # end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
   end
 
@@ -34,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # GET /users/1/edit
+
   def edit
   end
 
