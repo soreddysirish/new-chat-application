@@ -6,7 +6,5 @@ module MessagesHelper
   def message_interlocutor(message)
     message.user == message.conversation.sender ? message.conversation.sender : message.conversation.recipient
   end
-  def message_delete(message)
-    message.destroy
-  end
+
 end

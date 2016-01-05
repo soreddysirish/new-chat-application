@@ -25,7 +25,7 @@ class GroupmessagesController < ApplicationController
   # POST /groupmessages
   # POST /groupmessages.json
   def create
-    #@groupmessage = Groupmessage.new
+    @groupmessage = Groupmessage.new
     @groupmessage = Groupmessage.create(groupmessage_params)
     respond_to do |format|
       format.js

@@ -5,13 +5,11 @@ class UsersController < ApplicationController
 
   def index
     @groupmessage = Groupmessage.new
-  #  @groupmessages = Groupmessage.all
-    #binding.pry
+    @conversations = Conversation.involving(current_user).order("created_at DESC")
     #  @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
     if user_signed_in?
       current_user.update_attributes(status:true)
       @users=User.online_users_list
-      @conversations = Conversation.involving(current_user).order("created_at DESC")
     end
   end
 
@@ -33,6 +31,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+
     @user = User.new(user_params)
 
     respond_to do |format|

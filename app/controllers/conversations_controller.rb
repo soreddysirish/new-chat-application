@@ -1,15 +1,12 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
-
   layout false
-
   def create
     if Conversation.between(params[:sender_id],params[:recipient_id]).present?
       @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
     else
       @conversation = Conversation.create!(conversation_params)
     end
-
     render json: { conversation_id: @conversation.id }
   end
 
@@ -20,21 +17,14 @@ class ConversationsController < ApplicationController
     @message = Message.new
   end
 
-  #  def destroy
-  #    @conversation=Conversation.find(params[:id])
-  #    @message=@conversation.messages.find(params[:id])
-  #    @message.destroy
-  #    respond_to do |format|
-  #      format.js {render layout:false}
-  #    end
-  #  end
+
 
   private
-  
+
   def conversation_params
     params.permit(:sender_id, :recipient_id)
   end
-
+ # it defines the conversation
   def interlocutor(conversation)
     current_user == conversation.recipient ? conversation.sender : conversation.recipient
   end
