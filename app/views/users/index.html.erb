@@ -1,19 +1,9 @@
-<div class='row'>
-  <div class='col-sm-3 col-md-3' id= "leftdiv">
-    <div class="onlineusers">
-        <ul id="users_list">
-        <%= render partial: 'onlineusers' %>
-        </ul>
+<legend><h4>Group Chat</h4></legend>
+    <div  id ="messagefsorm">
+      <div class="chat-box">
+        <div id="messages_list">
+          <%= render partial: 'groupmessage' %>
+        </div>
+        <%= render :partial => 'groupmessages/form' %>
       </div>
     </div>
-    <div class='col-sm-9 col-md-9' id ="messageform">
-    <div id="messages_list">
-      <%= render partial: 'groupmessage' %>
-    </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class= "col-md-12 col-sm-6 col-xs-3">
-      <%= render :partial => 'groupmessages/form' %>
-    </div>
-  </div>
