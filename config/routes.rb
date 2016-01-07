@@ -2,6 +2,7 @@ Rails.application.routes.draw do
    devise_for :users,controllers: {sessions: 'sessions'}
 
    authenticated :user do
+     match 'users/list_of_users'=> 'users#list_of_users',via: [:get]
      resources :users
     root to: "users#index", as: :authenticated_root
     resources :groupmessages
@@ -14,5 +15,12 @@ Rails.application.routes.draw do
    resources :conversations do
      resources :messages
    end
+
+    resources :users do
+      member do
+        post :toggle
+      end
+    end
+
 
 end

@@ -1,20 +1,28 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:new,:create]
- #before_action :authenticate_user!
-
+  
   def index
     @groupmessage = Groupmessage.new
     @conversations = Conversation.involving(current_user).order("created_at DESC")
     #  @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
     if user_signed_in?
       current_user.update_attributes(status:true)
-      @users=User.online_users_list
+      @users = User.online_users_list
     end
   end
 
+   def list_of_users
+     @userslist=User.all
+   end
 
-
+   def toggle
+     @user=User.find(params[:id])
+   if @user.update_attributes(banned:params[:banned])
+     flash[:alert]=" user is successfully banned"
+     render nothing:true
+   end
+ end
 
   def show
   end
@@ -26,14 +34,13 @@ class UsersController < ApplicationController
 
 
   def edit
+
   end
 
   # POST /users
   # POST /users.json
   def create
-
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

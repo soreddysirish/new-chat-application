@@ -1,0 +1,59 @@
+<script>
+$(document).ready(function() {
+  $('.checkboxforblocunblockuser').bind('change', function() {
+    if (this.checked) {
+     $.ajax({
+        url: '/users/' + this.value + '/toggle',
+        type: 'POST',
+        data: {
+          'banned': this.checked
+        }
+      });
+    }
+    else {
+      $.ajax({
+         url: '/users/' + this.value + '/toggle',
+         type: 'POST',
+         data: {
+           'banned': false
+         }
+       });
+    }
+  });
+});
+</script>
+<h1>Listing Users</h1>
+<div class="table-responsive">
+<table class ="table">
+  <thead>
+    <tr>
+      <th>User name </th>
+      <th> email </th>
+
+      <th> Block/unblock user </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @userslist.each do |user|  %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if current_user.present? && current_user.admin? %>
+                <%= check_box_tag 'banned', user.id, user.banned,class:'checkboxforblocunblockuser'%>
+                <span>
+                <% if user.banned==true %>
+                    <%= "banned" %>
+                <% end %>
+                </span>
+          <% else %>
+              <%=  user.banned %>
+          <% end %>
+        </td>
+    <% end %>
+  </tbody>
+</table>
+</div>

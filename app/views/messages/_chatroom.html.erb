@@ -1,0 +1,9 @@
+<% unless current_user.blank? %>
+<%= subscribe_to "/chatroom_#{current_user.id}" %>
+  <script>
+  alert('ho');
+    PrivatePub.subscribe("/chatroom_#{current_user.id}", function(data, channel) {
+      chatBox.chatWith(data.conversation_id);
+    });
+  </script>
+<% end %>

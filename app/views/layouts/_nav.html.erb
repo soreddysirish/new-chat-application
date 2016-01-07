@@ -17,6 +17,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav pull-right">
+        <li>
+        <% if current_user.present? && current_user.admin? %>
+          <%= link_to "view all users",  users_list_of_users_path %>
+        <% end %>
+      </li>
         <% if user_signed_in? %>
             <li>
               <%= link_to "Hi, #{current_user.name}" %>
