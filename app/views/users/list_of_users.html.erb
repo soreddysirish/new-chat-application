@@ -1,7 +1,16 @@
 <script>
 $(document).ready(function() {
-  $('.checkboxforblocunblockuser').bind('change', function() {
-    if (this.checked) {
+  $(".checkboxforblocunblockuser").bind('change', function() {
+    //debugger;
+    if(this.checked) {
+      if(confirm("you sure to block this user?")) {
+        $(this).prop("checked", true);
+      }
+        else {
+           $(this).prop("checked", false);
+          //alert("hi");
+        }
+
      $.ajax({
         url: '/users/' + this.value + '/toggle',
         type: 'POST',
@@ -11,6 +20,12 @@ $(document).ready(function() {
       });
     }
     else {
+      if(confirm("You sure to unblock this user?")) {
+         $(this).prop("checked", false);
+      }
+      else {
+        $(this).prop("checked", true);
+      }
       $.ajax({
          url: '/users/' + this.value + '/toggle',
          type: 'POST',

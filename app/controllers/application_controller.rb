@@ -3,27 +3,23 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-#  load_and_authorize_resource
+  #load_and_authorize_resource
   #before_action :last_seen_at, if: proc { user_signed_in?}
-  before_filter :banned?,only: [:check_for_blocking]
-
+  before_filter :banned?
 
   private
   def banned?
     if current_user.present? && current_user.banned?
       sign_out current_user
-      redirect_to authenticated_root
+      redirect_to unauthenticated_root_path
       flash[:alert]="Your account is blocked peases contact system admin"
     end
   end
 
   def check_for_blocking
-    if user.blocked == true
+    if user.banned == true
       sign_out current_user
       redirect_to "unauthenticated_root", notice: "your account hasbeen blocked please contact adminstrater"
     end
   end
-
-
-
 end

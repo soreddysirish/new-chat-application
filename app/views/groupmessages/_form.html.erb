@@ -1,4 +1,6 @@
 <%= subscribe_to "/groupmessages/new"  %>
 <%= simple_form_for @groupmessage, method: :post, remote: true, input_html: {multipart: true} do |f| %>
-<%= f.input :text, :required => true, label: false%>
+<div class="form-group" id = 'message-box' >
+			<%= f.input :text, :placeholder => "Type a message", :label => false, :autofocus => true, :class => "form-control" %>
+		</div>
 <% end %>

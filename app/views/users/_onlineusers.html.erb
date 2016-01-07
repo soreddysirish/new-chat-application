@@ -1,6 +1,17 @@
-<% @users.each do |user| %>
-        <% if user_signed_in? %>
-      <li style="list-style-type: none;"><%=link_to  user.name,"#",class: " btn-xs start-conversation",
-                  "data-sid" => current_user.id, "data-rip" => user.id %></li>
-        <% end %>
-      <% end %>
+<div id = "onlineusers">
+	<nav class="nav-sidebar">
+	<% if user_signed_in? %>
+	<h4>Online Users</h4>
+	<% @users = User.online_users_list %>
+   <% @onlineusers = @users - [current_user] %>
+	<ul class="nav" id = "users_list">
+		<% @onlineusers.each do  |user| %>
+		<% if user_signed_in? %>
+		<li style="list-style-type: none;" class=".online_users"><%=link_to  user.name.titleize,"#",class: " btn-xs start-conversation",
+		"data-sid" => current_user.id, "data-rip" => user.id %></li>
+		<% end %>
+		<% end %>
+	</ul>
+	<% end %>
+</nav>
+</div>

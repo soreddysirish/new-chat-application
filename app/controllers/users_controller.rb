@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:new,:create]
-  
+
   def index
     @groupmessage = Groupmessage.new
     @conversations = Conversation.involving(current_user).order("created_at DESC")
@@ -19,7 +19,6 @@ class UsersController < ApplicationController
    def toggle
      @user=User.find(params[:id])
    if @user.update_attributes(banned:params[:banned])
-     flash[:alert]=" user is successfully banned"
      render nothing:true
    end
  end
